@@ -3,7 +3,7 @@
 
 export default [
 	[/intents\s+(?<intents>\d+)/, ({ intents }) => `const client=new Discord.Client({intents:${intents}});`],
-	[/login\s+(?<token>[a-zA-Z\d\.]{55,65})/, ({ token }) => `client.login(${token});`],
+	[/login\s+(?<token>[a-zA-Z\d]{24}\.[a-zA-Z\d]{6}\.[a-zA-Z\d]{27})/, ({ token }) => `client.login(${token});`],
 	[/on\s+login:/, () => [`client.on('ready',async()=>{`, '})']],
 	[/on\s+message(\((?<args>(\w+,)*\w+)\))?:/, ({ args }) => [`client.on('messageCreate',async(${args||''})=>{`, '})']],
 	[/print\s+(['"])(?<string>(?:(?!\1|\\).|\\.)*)\1/, ({ string }) => `console.log("${string}");`],
