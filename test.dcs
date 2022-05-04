@@ -1,14 +1,15 @@
 // Example on how a DiscordScript code can look
 
-login ".env":TOKEN // import key "TOKEN" from file ".env"
+intents 71375 // sets the bots intents to 71375
+login RBJpiQnG.YOry4GTXWypMzAF29k2RfWoK.YIKRc1khMlZyzPiyVrrm.D0BJ
 
 on login: // Calls when bot is logged in
   print "Logged in" // prints "Logged in" in console
+  print 'Logged in'
+  print `n${5 + 5}` // prints "n10" in console
+
+on message:
+  send `Hello World` in m.channel
 
 on message(m): // `m` is the incoming message
   send `Hello ${m.author}` in m.channel
-
-    // Is the same as:
-
-on message{channel, author as friend}: // `friend` is the author of the incoming message
-  send `Hello ${friend}` in channel
