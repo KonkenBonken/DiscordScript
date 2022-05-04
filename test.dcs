@@ -1,0 +1,14 @@
+// Example on how a DiscordScript code can look
+
+login ".env":TOKEN // import key "TOKEN" from file ".env"
+
+on login: // Calls when bot is logged in
+  print "Logged in" // prints "Logged in" in console
+
+on message(m): // `m` is the incoming message
+  send `Hello ${m.author}` in m.channel
+
+    // Is the same as:
+
+on message{channel, author as friend}: // `friend` is the author of the incoming message
+  send `Hello ${friend}` in channel
