@@ -5,7 +5,9 @@ const grammar = ohm.grammar(fs.readFileSync('grammar.ohm', 'utf-8'));
 const semantics = grammar.createSemantics();
 
 semantics.addOperation('parse', {
-	on: (a, b, c, d, e, f) => console.log([a, b, c, d, e, f]),
+	on(on, _2, Event, _3, varName, _4) {
+		return [on, Event, varName]
+	},
 });
 
 const userInput = `on message(m):`;
@@ -15,5 +17,5 @@ if (!match.succeeded()) {
 	console.log("Parsing failed:", match.message)
 } else {
 	let res = semantics(match).parse();
-	console.log(res);
+	console.log(...res.map(x => x._node));
 }
