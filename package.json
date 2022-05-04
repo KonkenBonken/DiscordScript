@@ -26,5 +26,8 @@
   "dependencies": {
     "ohm-js": "^16.3.4"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "eslint": "^8.14.0"
+  }
 }
