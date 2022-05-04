@@ -1,0 +1,10 @@
+DiscordScript {
+  on = "on" space+ event "(" letter* "):"
+  event = "login" | "message"
+
+  send = indent "send" space string
+
+  string = quote any+ quote
+  quote = "\"" | "'" | "`"
+  indent = "\t"
+}
