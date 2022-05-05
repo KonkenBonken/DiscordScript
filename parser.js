@@ -1,7 +1,7 @@
 import fs from 'fs';
 import beautify from 'js-beautify';
 import uglify from "uglify-js";
-import grammarRules from './grammar.js'
+import grammarRules from './lib/grammar.js'
 
 
 const args = {
