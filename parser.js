@@ -58,4 +58,7 @@ for (let line of lines) {
 }
 resetBrackets();
 
-console.log(output);
+if (process.argv[3])
+	fs.writeFileSync(process.argv[3], output);
+else
+	console.log(output);
