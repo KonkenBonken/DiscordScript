@@ -11,13 +11,12 @@ if (!input)
 	throw new Error('input is empty');
 
 let previousIndent = 0,
-	bracketClosers = [];
+	bracketClosers = [],
+	ignore = false;
 
 for (let line of lines) {
 	line = line.split("//")[0];
 	if (!line.trim()) continue;
-
-	// console.log(line);
 
 	const indent = line.match(/^\s*/)[0].length;
 	let indentChange = indent - previousIndent;
@@ -25,6 +24,19 @@ for (let line of lines) {
 	if (indentChange < 0)
 		for (var i = 0; i < -indentChange; i++)
 			output += bracketClosers.shift() || '';
+
+	if (line.trim() == '#{') {
+		ignore = true;
+		continue;
+	} else
+	if (line.trim() == '}#') {
+		ignore = false;
+		continue;
+	} else
+	if (ignore) {
+		output += line;
+		continue;
+	}
 
 	let successLine = false;
 	for (let [regex, parser] of grammarRules) {

@@ -8,8 +8,17 @@ on login: // Calls when bot is logged in
   print 'Logged in'
   print `n${5 + 5}` // prints "n10" in console
 
+#{
+  const js = "JavaScript";
+  console.log(`This will be ignored and run like normal ${js} code`);
+}#
+
 on message:
   send `Hello World` in m.channel
 
 on message(m): // `m` is the incoming message
   send `Hello ${m.author}` in m.channel
+
+  #{
+    console.log("This will run like normal JavaScript, but inside the message event");
+  }#
