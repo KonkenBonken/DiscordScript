@@ -12,6 +12,7 @@ if (!input)
 
 let previousIndent = 0,
 	bracketClosers = [],
+	resetBrackets = () => output += bracketClosers.join(';'),
 	ignore = false;
 
 for (let line of lines) {
@@ -55,6 +56,6 @@ for (let line of lines) {
 		console.log('Error:', line)
 
 }
-output += bracketClosers.join(';');
+resetBrackets();
 
 console.log(output);
