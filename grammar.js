@@ -3,7 +3,7 @@ export default [
 		({ intents }) => `const client=new Discord.Client({intents:${intents}});`
 	],
 	['login (?<token>[a-zA-Z@d]{24}@.[a-zA-Z@d]{6}@.[a-zA-Z@d]{27})',
-		({ token }) => `client.login(${token});`
+		({ token }) => `client.login("${token}");`
 	],
 	['on login:',
 		() => [`client.on('ready',async()=>{`, '})']
