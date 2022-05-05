@@ -1,8 +1,15 @@
 import fs from 'fs';
+import beautify from 'js-beautify';
+import uglify from "uglify-js";
 import grammarRules from './grammar.js'
 
 
-const input = fs.readFileSync(process.argv[2], 'utf-8');
+const args = {
+	files: process.argv.slice(2).filter(a => !a.startsWith('-')),
+	options: process.argv.slice(2).filter(a => a.startsWith('-')).map(a => a.substr(1)).join('')
+}
+
+const input = fs.readFileSync(args.files[0], 'utf-8');
 
 const lines = input.split('\n').map(line => line);
 let output = `import Discord from "discord.js";\n`;
@@ -58,7 +65,13 @@ for (let line of lines) {
 }
 resetBrackets();
 
-if (process.argv[3])
-	fs.writeFileSync(process.argv[3], output);
+if (args.options.includes('m')) //beautify
+	output = uglify.minify(output).code;
+else //beautify
+	output = beautify.js(output);
+
+
+if (args.files[1])
+	fs.writeFileSync(args.files[1], output);
 else
 	console.log(output);
